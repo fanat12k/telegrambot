@@ -1,0 +1,11 @@
+micronaut:
+  server:
+    port: 9494
+  application:
+    name: telegram-bot
+datasources:
+  default:
+    url: jdbc:postgresql://localhost/
+    username:
+    password:
+    driverClassName: org.postgresql.Driver
