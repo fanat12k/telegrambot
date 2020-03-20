@@ -7,10 +7,10 @@ public class TelegramConstant {
   public static final String STATUS = "Status";
   public static final String START = "/start";
   public static final String RESTART = "Restart";
-  public static final String BUILD = ":cityscape: Build Static";
+  public static final String BUILD = "Build Static";
   public static final String WHITE_CHECK_MARK_RESTART = ":white_check_mark: Restart";
   public static final String INFORMATION_SOURCE_STATUS = ":information_source: Status";
-  public static final String BUILD_STATIC = ":information_source: Build Static";
+  public static final String BUILD_STATIC = ":cityscape: Build Static";
   public static final String RESTART_TERMINAL_COMMAND = "sudo systemctl restart site.java";
   public static final String BUILD_STATIC_COMMAND = "sh /home/menesty/development/workspace/site-build.sh ";
   public static final String NO_ENTRY_SIGN_RESTART = ":no_entry_sign: To math restart";
