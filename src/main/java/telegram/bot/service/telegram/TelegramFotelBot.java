@@ -74,6 +74,8 @@ public class TelegramFotelBot extends TelegramLongPollingBot {
         } else {
           sendMassage(chatId, EmojiParser.parseToUnicode(TelegramConstant.NO_ENTRY_SIGN_RESTART));
         }
+      } else if (update.getMessage().getText().contains(TelegramConstant.BUILD)) {
+        buildStatic(update.getMessage().getChatId());
       } else if (update.getMessage().getText().contains(TelegramConstant.START)) {
         sendMassage(chatId, TelegramConstant.SUPPORT_COMMANDS);
       }
@@ -93,6 +95,16 @@ public class TelegramFotelBot extends TelegramLongPollingBot {
     }
   }
 
+
+  public void buildStatic(Long chatId) {
+    try {
+      Process proc = Runtime.getRuntime().exec(TelegramConstant.BUILD_STATIC_COMMAND + getBotToken() + " " + chatId);
+      proc.waitFor();
+    } catch (Exception e) {
+      sendMassage(chatId, EmojiParser.parseToUnicode(TelegramConstant.ERROR));
+      e.printStackTrace();
+    }
+  }
 
   public void scheduledCheckStatus() {
     List<TelegramUser> telegramUserList = new ArrayList<>(telegramRepository.list());
@@ -148,8 +160,12 @@ public class TelegramFotelBot extends TelegramLongPollingBot {
     KeyboardRow keyboardSecondRow = new KeyboardRow();
     keyboardSecondRow.add(EmojiParser.parseToUnicode(TelegramConstant.WHITE_CHECK_MARK_RESTART));
 
+    KeyboardRow keyboardThirdRow = new KeyboardRow();
+    keyboardSecondRow.add(EmojiParser.parseToUnicode(TelegramConstant.BUILD_STATIC));
+
     keyboard.add(keyboardFirstRow);
     keyboard.add(keyboardSecondRow);
+    keyboard.add(keyboardThirdRow);
     replyKeyboardMarkup.setKeyboard(keyboard);
   }
 

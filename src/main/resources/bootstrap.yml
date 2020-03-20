@@ -1,0 +1,15 @@
+micronaut:
+  application:
+    name: site-fotel
+  config-client:
+    enabled: ${distributed.enabled:false}
+consul:
+  client:
+    config:
+      enabled: ${distributed.enabled:false}
+      format: YAML
+    aslToken: "${asl.token:}"
+    registration:
+      enabled: ${distributed.enabled:false}
+      prefer-ip-address: true
+    defaultZone: "${consul.host:localhost}:${consul.port:8500}"
