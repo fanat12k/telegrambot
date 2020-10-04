@@ -12,6 +12,7 @@ import java.util.Optional;
 public class SitePropertyServiceImpl implements SitePropertyService {
   private SitePropertyRepository sitePropertyRepository;
 
+
   public SitePropertyServiceImpl(SitePropertyRepository sitePropertyRepository) {
     this.sitePropertyRepository = sitePropertyRepository;
   }
@@ -26,6 +27,11 @@ public class SitePropertyServiceImpl implements SitePropertyService {
     SiteProperty property = new SiteProperty(key, value);
     updateOrSave(property);
   }
+  public void update(String key, String value) {
+    SiteProperty property = new SiteProperty(key, value);
+    updateOrSave(property);
+  }
+
 
   private SiteProperty updateOrSave(SiteProperty property) {
     if (!sitePropertyRepository.update(property)) {

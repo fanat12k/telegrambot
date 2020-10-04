@@ -14,20 +14,23 @@ public class TelegramBotService implements ApplicationEventListener<ServiceStart
 
   private static final Logger LOGGER = LoggerFactory.getLogger(TelegramBotService.class);
 
-  private TelegramFotelBot telegramFotelBot;
   private TelegramBotsApi telegramBotsApi;
+  private TelegramIkeaBot telegramIkeaBot;
+  private TelegramFotelBot telegramFotelBot;
 
-
-  public TelegramBotService(TelegramBotsApi telegramBotsApi, TelegramFotelBot telegramFotelBot) {
-    this.telegramFotelBot = telegramFotelBot;
+  public TelegramBotService(TelegramFotelBot telegramFotelBot, TelegramBotsApi telegramBotsApi, TelegramIkeaBot telegramIkeaBot) {
     this.telegramBotsApi = telegramBotsApi;
+    this.telegramIkeaBot = telegramIkeaBot;
+    this.telegramFotelBot = telegramFotelBot;
   }
+
 
   @Override
   public void onApplicationEvent(ServiceStartedEvent event) {
 
     LOGGER.info("Registering Bots");
     try {
+      telegramBotsApi.registerBot(telegramIkeaBot);
       telegramBotsApi.registerBot(telegramFotelBot);
     } catch (TelegramApiRequestException e) {
       LOGGER.error(e.getMessage(), e);

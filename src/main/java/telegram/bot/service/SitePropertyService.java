@@ -8,4 +8,6 @@ public interface SitePropertyService {
   SiteProperty get(String key);
 
   void update(String key, LocalDateTime value);
+
+  void update(String key, String value);
 }
